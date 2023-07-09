@@ -18,6 +18,14 @@ def get_all_absolute_path(names_elements, direct):
     return pathspl
 
 
+def open_file(path):
+
+    with open(file= path, encoding= "utf-8", mode="r") as data_file:
+        data = data_file.read()
+    data_file.close()
+    return data
+
+
 # uploading all the needed paths to work with
 path_un_data = get_absolute_path(constants.UN_DATA_PATH)
 path_raw_data = get_absolute_path(constants.RAW_DATA_PATH)  # resolving the path and getting
@@ -36,6 +44,7 @@ print("supported_prog_langs:", supported_prog_langs)
 print("path_spl:", path_spl)
 print("path_sub_spl", path_sub_spl)
 # ===============================================
+
 
 
 
