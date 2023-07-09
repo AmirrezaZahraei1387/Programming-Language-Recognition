@@ -30,6 +30,19 @@ def open_file(path):
     return data
 
 
+def remove_all(path):
+
+    files = os.listdir(path)
+    for p in files:
+        correct_path = get_absolute_path(str(path)+"/"+str(p))
+
+        try:
+            os.remove(correct_path)
+
+        except IsADirectoryError:
+            os.rmdir(correct_path)
+
+
 # uploading all the needed paths to work with
 path_un_data = get_absolute_path(constants.UN_DATA_PATH)
 path_raw_data = get_absolute_path(constants.RAW_DATA_PATH)  # resolving the path and getting
@@ -49,8 +62,6 @@ print("path_spl:", path_spl)
 print("path_sub_spl", path_sub_spl)
 # ===============================================
 
-
-
-
+remove_all(path_un_data)
 
 
