@@ -1,9 +1,13 @@
 """this is the file that the data preprocessing will be
 donne here. so basically we upload all the files then we
 extract the syntax, and then we write into the un-data folder"""
+
 import os
 import pathlib
 import constants
+from numpy import array
+from numpy import where, append, delete
+import tokenizer
 
 
 def get_absolute_path(path):
@@ -21,7 +25,7 @@ def get_all_absolute_path(names_elements, direct):
 def open_file(path):
 
     with open(file= path, encoding= "utf-8", mode="r") as data_file:
-        data = data_file.read()
+        data = data_file.readlines()
     data_file.close()
     return data
 
@@ -44,12 +48,6 @@ print("supported_prog_langs:", supported_prog_langs)
 print("path_spl:", path_spl)
 print("path_sub_spl", path_sub_spl)
 # ===============================================
-
-
-
-
-
-
 
 
 
