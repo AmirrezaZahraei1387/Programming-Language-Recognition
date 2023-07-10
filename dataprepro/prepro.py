@@ -3,33 +3,19 @@ donne here. so basically we upload all the files then we
 extract the syntax, and then we write into the un-data folder"""
 
 import os
-import pathlib
-import constants
+import sys
 import tokenizer
-
-
-def get_absolute_path(path):
-    return pathlib.Path(path).absolute()
-
-
-def get_all_absolute_path(names_elements, direct):
-
-    pathspl = []
-    for p in names_elements:
-        pathspl.append(get_absolute_path(str(direct) + '/' + str(p)))
-    return pathspl
+import path_manager
 
 
 def open_file(path):
-
-    with open(file= path, encoding= "utf-8", mode="r") as data_file:
+    with open(file=path, encoding="utf-8", mode="r") as data_file:
         data = data_file.readlines()
     data_file.close()
     return data
 
 
 def search(array, item):
-
     index = -1
     for element in array:
         index += 1
@@ -37,59 +23,70 @@ def search(array, item):
             return index
 
 
-# uploading all the needed paths to work with
-path_un_data = get_absolute_path(constants.UN_DATA_PATH)
-path_raw_data = get_absolute_path(constants.RAW_DATA_PATH)  # resolving the path and getting
-# the correct path
-supported_prog_langs = os.listdir(path_raw_data)  # we suppose for each programing
-# language there is a directory with its name in the raw data
-path_spl = get_all_absolute_path(supported_prog_langs, path_raw_data)
-path_sub_spl = []
-for p in path_spl:
-    names = os.listdir(p)
-    path_sub_spl.append(get_all_absolute_path(names, p))
+def remove_files(folder):
+    """this method will remove the files and folders under a
+    directory"""
 
-print("path_un_data:", path_un_data)
-print("path_raw_data:", path_raw_data)
-print("supported_prog_langs:", supported_prog_langs)
-print("path_spl:", path_spl)
-print("path_sub_spl", path_sub_spl)
-# ===============================================
+    files = os.listdir(folder)
+    if files:
+        for pa in files:
+            try:
+                os.remove(program_path.new_path_under_dir(folder, pa))
+            except IsADirectoryError:
+                os.rmdir(program_path.new_path_under_dir(folder, pa))
 
-index = -1
 
-for lang in supported_prog_langs:
+program_path = path_manager.PathManager()
 
-    index += 1
-    path_new = get_absolute_path(str(path_un_data)+'/'+str(lang))
-    os.mkdir(path_new)
-    tokenized_texts = []
-    print("programing language:", lang)
-    for path_raw_data in path_sub_spl[index]:
 
-        data = open_file(path_raw_data)
+def main_prog():
+    index = -1
 
-        for statement in data:
-            if statement != "\n" or statement != "":    # checking if the line is empty or no
+    for lang in program_path.supported_prog_langs:
 
-                t = tokenizer.tokenize(statement[:-1])
-                result = tokenizer.generalformataddspace(t)
-                search_result = search(tokenized_texts, result[0])  # it can be none or the index of the object
+        index += 1
 
-                if search_result is None:
-                    tokenized_texts.append([result[0], [result[1]]])
+        tokenized_texts = []
 
-                else:
-                    tokenized_texts[search_result][1].append(result[1])
+        for path_raw_data in program_path.path_sub_spl[index]:
 
-    # here the work for that language is done, and so
-    # we go to do another one that exist
+            data = open_file(path_raw_data)
 
-    path_text_file = get_absolute_path(str(path_new)+"/"+"data.txt")
-    with open(path_text_file, "a") as file:
-        file.write(str(tokenized_texts))
-    file.close()
+            for statement in data:
+                if statement != "\n" or statement != "":  # checking if the line is empty or no
 
+                    t = tokenizer.tokenize(statement[:-1])
+                    result = tokenizer.generalformataddspace(t)
+                    search_result = search(tokenized_texts, result[0])  # it can be none or the index of the object
+
+                    if search_result is None:
+                        tokenized_texts.append([result[0], [result[1]]])
+
+                    else:
+                        tokenized_texts[search_result][1].append(result[1])
+
+        # here the work for that language is done, and so
+        # we go to do another one that exist
+
+        path_new = program_path.new_path_under_dir(program_path.path_un_data, lang)
+        os.mkdir(path_new)
+
+        path_text_file = program_path.new_path_under_dir(path_new, "data.txt")
+
+        with open(path_text_file, "a") as file:
+            file.write(str(tokenized_texts))
+        file.close()
+
+
+def main():
+
+    try:
+        remove_files(program_path.path_un_data)
+    except PermissionError:
+        print("there are some files in the un-data while it is expected to be empty. please clean it manually"
+              "because we can't do that")
+        sys.exit()
+    main_prog()
 
 
 

@@ -31,18 +31,14 @@ class PathManager:
 
         # here we get all the path of the folders in the raw data, and we save in self.path_spl
         self.path_spl = get_all_absolute_path(self.supported_prog_langs, self.path_raw_data)
-        self.path_sub_spl = []  # this list will hold all the sub files of the folders indide the raw data
+        self.path_sub_spl = []  # this list will hold all the sub files of the folders inside the raw data
 
         for p in self.path_spl:
             names = os.listdir(p)
             self.path_sub_spl.append(get_all_absolute_path(names, p))
 
-    def new_path_under_dir(self, path, name):
+    @staticmethod
+    def new_path_under_dir(path, name):
         """this will get path and a name then it will concatenate them
         and give a new  path."""
         return get_absolute_path(str(path)+'/'+str(name))
-
-
-
-
-
