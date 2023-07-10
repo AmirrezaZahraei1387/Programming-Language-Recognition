@@ -3,7 +3,6 @@ donne here. so basically we upload all the files then we
 extract the syntax, and then we write into the un-data folder"""
 
 import os
-import sys
 import tokenizer
 import path_manager
 
@@ -23,23 +22,21 @@ def search(array, item):
             return index
 
 
-def remove_files(folder):
+def is_empty(folder):
     """this method will remove the files and folders under a
     directory"""
 
     files = os.listdir(folder)
-    if files:
-        for pa in files:
-            try:
-                os.remove(program_path.new_path_under_dir(folder, pa))
-            except IsADirectoryError:
-                os.rmdir(program_path.new_path_under_dir(folder, pa))
+    if not files:
+        return True
+    return False
 
 
-program_path = path_manager.PathManager()
+def main_prog(un_data, raw_data):
+    """the un_data is empty folder for the program result
+    and raw data is the data is going to be processed"""
+    program_path = path_manager.PathManager(raw_data, un_data)
 
-
-def main_prog():
     index = -1
 
     for lang in program_path.supported_prog_langs:
@@ -76,17 +73,6 @@ def main_prog():
         with open(path_text_file, "a") as file:
             file.write(str(tokenized_texts))
         file.close()
-
-
-def main():
-
-    try:
-        remove_files(program_path.path_un_data)
-    except PermissionError:
-        print("there are some files in the un-data while it is expected to be empty. please clean it manually"
-              "because we can't do that")
-        sys.exit()
-    main_prog()
 
 
 
