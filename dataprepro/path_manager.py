@@ -37,3 +37,7 @@ class PathManager:
             names = os.listdir(p)
             self.path_sub_spl.append(get_all_absolute_path(names, p))
 
+    def new_path_under_dir(self):
+        """this will get path and a name then it will concatenate them
+        and give a new  path."""
+
