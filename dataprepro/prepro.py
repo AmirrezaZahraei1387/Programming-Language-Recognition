@@ -77,7 +77,7 @@ for lang in supported_prog_langs:
                 search_result = search(tokenized_texts, result[0])  # it can be none or the index of the object
 
                 if search_result is None:
-                    tokenized_texts.append([result[0],[result[1]]])
+                    tokenized_texts.append([result[0], [result[1]]])
 
                 else:
                     tokenized_texts[search_result][1].append(result[1])
