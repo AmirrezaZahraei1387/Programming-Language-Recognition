@@ -3,7 +3,6 @@ that are in  the data we have.
 this important because there are a lot of data
 and their path will become too messy easily"""
 
-import constants
 import pathlib
 import os
 
@@ -21,7 +20,7 @@ def get_all_absolute_path(names_elements, direct):
 
 class PathManager:
 
-    def __init__(self, path_raw_data=constants.RAW_DATA_PATH, path_un_data=constants.UN_DATA_PATH):
+    def __init__(self, path_raw_data, path_un_data):
 
         self.path_raw_data = get_absolute_path(path_raw_data)
         self.path_un_data = get_absolute_path(path_un_data)

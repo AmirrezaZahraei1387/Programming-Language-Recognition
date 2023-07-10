@@ -5,7 +5,7 @@ extract the syntax, and then we write into the un-data folder"""
 import os
 import tokenizer
 import path_manager
-
+import constants
 
 def open_file(path):
     with open(file=path, encoding="utf-8", mode="r") as data_file:
@@ -75,14 +75,7 @@ def main_prog(un_data, raw_data):
         file.close()
 
 
-
-
-
-
-
-
-
-
+main_prog(constants.UN_DATA_PATH, constants.RAW_DATA_PATH)
 
 
 
