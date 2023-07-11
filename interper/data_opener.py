@@ -2,14 +2,14 @@
 to open the data for us. it can make every thing very better
 because we won't get messy in the main file."""
 
-import interper.constants as constants
 import os
+import pathlib
 
 
 class DataFileOpener:
 
     def __init__(self, path=constants.DAtA_FILE):
-        self.path = path
+
         self.supported_langs = os.listdir(self.path)
 
     def make_path(self, lang):
@@ -31,9 +31,6 @@ class DataFileOpener:
         return self.open_langs(self.supported_langs[num])
 
 
-
-
-
-
+a = DataFileOpener()
 
 
