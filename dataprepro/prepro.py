@@ -3,9 +3,9 @@ donne here. so basically we upload all the files then we
 extract the syntax, and then we write into the un-data folder"""
 
 import os
-import tokenizer
-import path_manager
-import constants
+import dataprepro.tokenizer as tokenizer
+import dataprepro.path_manager as path_manager
+import dataprepro.constants as constants
 
 def open_file(path):
     with open(file=path, encoding="utf-8", mode="r") as data_file:
