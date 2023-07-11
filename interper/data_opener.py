@@ -20,7 +20,16 @@ class DataFileOpener:
         return self.path+str("/")+lang+"/"+"data.txt"
 
     def open_langs(self, lang):
-        pass
+        """opening the data using a language"""
+        with open(self.make_path(lang), mode="r") as file:
+            data = list(file.read())
+        file.close()
+        return data
+
+    def open_number(self, num):
+        """opening the data using numbers"""
+        return self.open_langs(self.supported_langs[num])
+
 
 
 
