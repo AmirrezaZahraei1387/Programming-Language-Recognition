@@ -7,6 +7,7 @@ import dataprepro.tokenizer as tokenizer
 import dataprepro.path_manager as path_manager
 import dataprepro.constants as constants
 
+
 def open_file(path):
     with open(file=path, encoding="utf-8", mode="r") as data_file:
         data = data_file.readlines()

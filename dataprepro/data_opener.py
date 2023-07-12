@@ -7,6 +7,7 @@ import pathlib
 import dataprepro.path_manager as path_manager
 import dataprepro.constants as constants
 
+
 class DataFileOpener:
 
     def __init__(self):

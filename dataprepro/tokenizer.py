@@ -23,6 +23,8 @@ def tokenize(statement: str):
         else:
             maked_name += word
     if maked_name != "":
+        maked_name = maked_name.replace("\n", "")
+        maked_name = maked_name.replace("\t", "")
         tokenized_text.append(maked_name)
 
     return tokenized_text
