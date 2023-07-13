@@ -20,7 +20,7 @@ def get_all_absolute_path(names_elements, direct):
 
 class PathManager:
 
-    def __init__(self, path_raw_data, path_un_data):
+    def __init__(self, path_raw_data, path_un_data, target_path = 0):
 
         self.path_raw_data = get_absolute_path(path_raw_data)
         self.path_un_data = get_absolute_path(path_un_data)
@@ -29,7 +29,10 @@ class PathManager:
         # from now on spl means supported_programing_languages to avoid extra typings
 
         # here we get all the path of the folders in the raw data, and we save in self.path_spl
-        self.path_spl = get_all_absolute_path(self.supported_prog_langs, self.path_raw_data)
+        if target_path == 0:
+            self.path_spl = get_all_absolute_path(self.supported_prog_langs, self.path_raw_data)
+        else:
+            self.path_spl = get_all_absolute_path(self.supported_prog_langs, self.path_un_data)
         self.path_sub_spl = []  # this list will hold all the sub files of the folders inside the raw data
 
         for p in self.path_spl:
