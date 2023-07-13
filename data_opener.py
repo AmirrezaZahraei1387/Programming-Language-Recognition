@@ -4,8 +4,8 @@ because we won't get messy in the main file."""
 
 import os
 import pathlib
-import dataprepro.path_manager as path_manager
-import dataprepro.constants as constants
+import path_manager as path_manager
+import constants as constants
 
 
 class DataFileOpener:

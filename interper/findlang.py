@@ -1,7 +1,7 @@
 """this is the program that will detect the language"""
-from dataprepro.data_opener import DataFileOpener
-from dataprepro.tokenizer import tokenize
-from dataprepro.tokenizer import generalformataddspace
+from data_opener import DataFileOpener
+from tokenizer import tokenize
+from tokenizer import generalformataddspace
 from dataprepro import open_file
 
 
