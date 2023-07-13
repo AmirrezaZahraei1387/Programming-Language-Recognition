@@ -33,6 +33,29 @@ class DataFileOpener:
         """opening the data using numbers"""
         return self.open_langs(self.supported_langs[num])
 
+    def search(self, syntax):
 
-a = DataFileOpener()
-print(a.open_langs("c++"))
+        for lang in self.supported_langs:
+            data = self.open_langs(lang)  # opening the file using the language
+            for syn in data:
+                if syntax[0] == syn[0]:
+                    arr = [item for sublist in syn[1] for item in sublist]  # flattening the array
+                    counter = 0
+                    for r in syntax[1]:
+                        if r in arr:
+                            counter += 1
+                        else:
+                            break
+                    if counter == len(syntax[1]):
+                        return lang
+
+
+
+
+
+
+
+
+
+
+

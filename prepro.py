@@ -76,8 +76,6 @@ def main_prog(un_data, raw_data):
         file.close()
 
 
-main_prog(constants.UN_DATA_PATH, constants.RAW_DATA_PATH)
-
 
 
 
