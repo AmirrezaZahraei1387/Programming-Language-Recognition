@@ -32,3 +32,7 @@ class DataFileOpener:
     def open_number(self, num):
         """opening the data using numbers"""
         return self.open_langs(self.supported_langs[num])
+
+
+a = DataFileOpener()
+print(a.open_langs("c++"))
