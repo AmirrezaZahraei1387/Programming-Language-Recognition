@@ -18,6 +18,7 @@ class DataFileOpener:
     def make_path(self, lang):
         """this method wil make the path of data.txt by getting a language"""
 
+
         if lang not in self.supported_langs:
             raise NotImplementedError("the lang expected is not implemented")
         return str(self.path)+str("/")+lang+"/"+"data.txt"
