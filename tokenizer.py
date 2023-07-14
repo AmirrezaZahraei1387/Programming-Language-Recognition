@@ -5,7 +5,7 @@ for more imformations go to the
 following url:
 https://github.com/AmirrezaZahraei1387/text-similarity"""
 
-import dataprepro.constants as constants
+import constants as constants
 
 
 def tokenize(statement: str):
@@ -23,6 +23,8 @@ def tokenize(statement: str):
         else:
             maked_name += word
     if maked_name != "":
+        maked_name = maked_name.replace("\n", "")
+        maked_name = maked_name.replace("\t", "")
         tokenized_text.append(maked_name)
 
     return tokenized_text

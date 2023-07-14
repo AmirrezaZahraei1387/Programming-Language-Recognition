@@ -1,5 +1,5 @@
 import unittest
-import dataprepro.tokenizer as tokenizer
+import tokenizer as tokenizer
 
 
 class test(unittest.TestCase):

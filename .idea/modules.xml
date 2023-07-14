@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/programing-language-reco.iml" filepath="$PROJECT_DIR$/.idea/programing-language-reco.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/plr.iml" filepath="$PROJECT_DIR$/.idea/plr.iml" />
     </modules>
   </component>
 </project>
