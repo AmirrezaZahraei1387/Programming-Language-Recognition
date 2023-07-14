@@ -20,8 +20,8 @@ def reco(code_lines: str):
     return langs
 
 
-print([6,4] in [6,4,3,2,4])
-a = open_file("prepro.py")
-print(reco(a).count("html"))
+a = ["""for i in range():"""]
+b=reco(a)
+print(b)
 
 
